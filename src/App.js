@@ -8,7 +8,10 @@ import key from "./key";
 const App = () => {
   const [gifs, setGifs] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+
   const handleSearchGifs = (searchType = "trending", searchText = "") => {
+    setLoading(() => true);
     axios
       .get(
         `https://api.giphy.com/v1/gifs/${searchType}?q=${searchText}&api_key=${key}&limit=25`
@@ -20,6 +23,7 @@ const App = () => {
   };
 
   useEffect(handleSearchGifs, []);
+  useEffect(() => setLoading(() => false), [gifs]);
 
   return (
     <div>
@@ -30,7 +34,7 @@ const App = () => {
         </div>
       </div>
       <div className="main-content">
-        <GifList data={gifs} />
+        {loading ? <p>Loading...</p> : <GifList data={gifs} />}
       </div>
     </div>
   );
