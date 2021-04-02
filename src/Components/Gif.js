@@ -1,8 +1,13 @@
-import React from 'react';
+import React from "react";
 
-const Gif = props => (
+const Gif = ({
+  title,
+  images: {
+    fixed_height: { url },
+  },
+}) => (
   <li className="gif-wrap">
-    <img alt=""/>
+    <img src={url} alt={title} />
   </li>
 );
 

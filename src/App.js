@@ -1,11 +1,11 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./App.css";
 import SearchForm from "./Components/SearchForm";
 import GifList from "./Components/GifList";
 import key from "./key";
 
-export default () => {
+const App = () => {
   const [gifs, setGifs] = useState([]);
   useEffect(() => {
     axios
@@ -24,8 +24,10 @@ export default () => {
         </div>
       </div>
       <div className="main-content">
-        <GifList />
+        <GifList data={gifs} />
       </div>
     </div>
   );
 };
+
+export default App;
